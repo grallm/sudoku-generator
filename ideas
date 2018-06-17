@@ -1,11 +1,16 @@
 FRONTEND (JS + HTML (+ CSS))
-- html page where table appears (9x9), separating with bigger borders (3x3)
-- JS generating a valid sudoku testing all conditions
+/ html page where table appears (9x9), separating with bigger borders (3x3)
+/ JS generating a valid sudoku testing all conditions
+- function testing the reality of sudoku
+- shake columns
+- delay when changing sudoku and hightlight changes
 - hiding a big part of numbers generated on sudoku
 - testing the sudoku randomly -> number of attempts = difficulty
 - explaining rules
+- to change number -> click, or roll mouse
 
 BACKEND (NODE.JS)
 - create a share platform
 - showing all sudoku generated: difficulty
 - profile with score: difficulty ended, time to do it
+- generat sudoku in background and save them in DB with a button in admin panel

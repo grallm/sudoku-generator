@@ -1,0 +1,16 @@
+table {
+    width: 450px;
+    height: 450px;
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid;
+    height: 50px;
+    width: 50px;
+}
+td.bottom{
+    border-bottom: 2px solid;
+}
+td.right{
+    border-right: 2px solid;
+}

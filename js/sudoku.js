@@ -23,9 +23,33 @@ let sudokuContent = [];
 	document.querySelector('body').appendChild(table);
 })();
 
+function checkSudoku(content) {
+	for(let i=0; i<9; i++) {
+		const column = (function () {
+			let columnContent = [];
+			for(let k=0; k<9; k++) {
+				columnContent.push(content[k][i]);
+			}
+			return columnContent;
+		})();
+		for (let j = 1; j < 10; j++) {
+			if (content[i].indexOf(j) === -1) {
+				return false;	// ERROR ON LINE
+			}
+
+			if (column.indexOf(j) === -1){
+				return false;	// ERROR ON COLUMN
+			}
+		}
+	}
+	return true;
+}
+
 function setContentOnSudoku(content) {	// SET THE SUDOKU ON PAGE FROM TABLE
-	for(let i=0; i< content.length; i++){
-		for(let j=0; j< content[i].length; j++){
+	const contL= content.length;
+	for(let i=0; i< contL; i++){
+		const contLi = content[i].length;
+		for(let j=0; j<contLi; j++){
 			document.getElementById('s' + i + '-' + j).textContent = content[i][j];
 		}
 	}

@@ -1,7 +1,8 @@
 FRONTEND (JS + HTML (+ CSS))
-/ html page where table appears (9x9), separating with bigger borders (3x3)
-/ JS generating a valid sudoku testing all conditions
-- function testing the reality of sudoku
+/- html page where table appears (9x9), separating with bigger borders (3x3)
+/- JS generating a valid sudoku testing all conditions
+!- generating functional blocs
+- function testing the reality of sudoku (blocs)
 - shake columns
 - delay when changing sudoku and hightlight changes
 - hiding a big part of numbers generated on sudoku

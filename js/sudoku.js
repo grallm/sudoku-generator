@@ -17,6 +17,21 @@ let sudokuContent = [];
 				tabCol.setAttribute('class',tabCol.className + ' bottom');
 			}
 			tabLine.appendChild(tabCol);
+
+			tabCol.addEventListener('click', function (e) {	// CHANGE VALUE ON CLICK
+				const content = parseInt(e.target.innerHTML);
+				/^s(\d)-(\d)$/.exec(e.target.id);
+				if(content < 9){
+					e.target.innerHTML = content+1;
+					sudokuContent[RegExp.$1][RegExp.$2] = content+1;
+				}else{
+					e.target.innerHTML = content-8;
+					sudokuContent[RegExp.$1][RegExp.$2] = content-8;
+				}
+			});
+			tabCol.addEventListener('select', function (e) {	// PREVENT SELECT
+				e.preventDefault();
+			});
 		}
 		table.appendChild(tabLine);
 	}
@@ -39,6 +54,24 @@ function checkSudoku(content) {
 
 			if (column.indexOf(j) === -1){
 				return false;	// ERROR ON COLUMN
+			}
+		}
+	}
+	for(let a=0; a<9; a+3) {
+		for(let b=0; b<9; b+3) {
+			const block = (function () {
+				let blockContent = [];
+				for (let i = 0; i < 3; i++) {
+					for (let j = 0; j < 3; j++) {
+						blockContent.push(content[a+i][b+j]);
+					}
+				}
+				return blockContent;
+			})();
+			for (let i = 1; i < 10; i++) {
+				if (block.indexOf(i) === -1) {
+					return false;
+				}
 			}
 		}
 	}

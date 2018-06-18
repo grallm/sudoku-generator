@@ -7,6 +7,11 @@ td {
     border: 1px solid;
     height: 50px;
     width: 50px;
+
+	-moz-user-select: -moz-none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 td.bottom{
     border-bottom: 2px solid;

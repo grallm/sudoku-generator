@@ -49,16 +49,16 @@ function checkSudoku(content) {
 		})();
 		for (let j = 1; j < 10; j++) {
 			if (content[i].indexOf(j) === -1) {
-				return false;	// ERROR ON LINE
+				return [false, 'L', i];	// ERROR ON LINE
 			}
 
 			if (column.indexOf(j) === -1){
-				return false;	// ERROR ON COLUMN
+				return [false, 'C', i];	// ERROR ON COLUMN
 			}
 		}
 	}
-	for(let a=0; a<9; a+3) {
-		for(let b=0; b<9; b+3) {
+	for(let a=0; a<9; a+=3) {
+		for(let b=0; b<9; b+=3) {
 			const block = (function () {
 				let blockContent = [];
 				for (let i = 0; i < 3; i++) {
@@ -70,12 +70,12 @@ function checkSudoku(content) {
 			})();
 			for (let i = 1; i < 10; i++) {
 				if (block.indexOf(i) === -1) {
-					return false;
+					return [false, 'B', i];
 				}
 			}
 		}
 	}
-	return true;
+	return [true, null, null];
 }
 
 function setContentOnSudoku(content) {	// SET THE SUDOKU ON PAGE FROM TABLE
@@ -89,12 +89,23 @@ function setContentOnSudoku(content) {	// SET THE SUDOKU ON PAGE FROM TABLE
 }
 
 (function setContent(){	// GENERATE SUDOKU
+	const firstValues = [1, 7, 4, 9, 6, 3, 8, 5, 2];	// PLACE ALL LINES FIRST VALUE
+	const fVlenght = firstValues.length;
+	for(let i=0; i<fVlenght; i++){
+		sudokuContent[i] = [firstValues[i]];
+	}
 	for(let i=0; i<9; i++){	// CREATE TABLE LINES
-		sudokuContent[i] = [];
-		for(let j=0; j<9; j++) {	// CREATE TABLE COLUMNS
-			let caseValue = j+i+1;
+/*		if(i > 1){
+			sudokuContent[i] = [];
+			console.log(sudokuContent[i-1][0]-3)
+			let caseValue = sudokuContent[i-1][0]+6-(i-(i%3))/3;	NO PROGRESSION (SUITE) CORRESPONDING: (1) 7 4 9 6 3 8 5 2
+			caseValue = (caseValue < 10) ? caseValue : caseValue-9;
+			sudokuContent[i][0] = caseValue;
+		}*/
+		for(let j=1; j<9; j++) {	// CREATE TABLE COLUMNS
+			let caseValue = sudokuContent[i][0]+j;
 			caseValue = (caseValue < 10) ? caseValue : caseValue-9;	// RESTART IF VALUE BIGGER THAN 9
-			sudokuContent[i][j] = caseValue;
+			sudokuContent[i].push(caseValue);
 		}
 	}
 	setContentOnSudoku(sudokuContent);

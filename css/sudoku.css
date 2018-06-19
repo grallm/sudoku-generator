@@ -2,11 +2,14 @@ table {
     width: 450px;
     height: 450px;
     border-collapse: collapse;
+	margin: 50px auto 0 auto;
 }
 td {
     border: 1px solid;
     height: 50px;
     width: 50px;
+	text-align: center;
+	font-size: 22px;
 
 	-moz-user-select: -moz-none;
 	-webkit-user-select: none;
